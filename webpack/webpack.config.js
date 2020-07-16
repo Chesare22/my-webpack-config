@@ -14,12 +14,12 @@ const route = extraConfig => {
       collapseWhitespace: true,
       caseSensitive: true,
       removeComments: true,
-      removeEmptyElements: true
+      removeEmptyElements: true,
     },
   }, extraConfig);
   console.log('Route Configuration: ', configuration);
   return new HtmlWebpackPlugin(configuration);
-}
+};
 
 module.exports = {
   entry: {
@@ -28,43 +28,41 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'js/[name].bundle.js'
+    filename: 'js/[name].bundle.js',
   },
   plugins: [
     route({
       template: './src/views/index.handlebars',
       chunks: ['index'],
-      filename: 'index.html'
+      filename: 'index.html',
     }),
     route({
       template: './src/views/about.handlebars',
       chunks: ['about'],
-      filename: 'about/index.html'
+      filename: 'about/index.html',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "css/[name]-styles.css",
-      chunkFilename: "[id].css"
+      filename: 'css/[name]-min.css',
+      chunkFilename: '[id].css',
     }),
   ],
   resolve: {
     alias: {
       src: path.resolve(__dirname, '../src'),
     },
-    modules: [
-      path.resolve(__dirname, '../node_modules'),
-    ],
+    modules: [path.resolve(__dirname, '../node_modules')],
   },
   devtool: 'source-map',
   devServer: {
     port: process.env.PORT,
-    open: true
+    open: true,
   },
   module: {
     rules: [
       {
         test: /\.(handlebars|hbs|html)$/,
-        loader: 'handlebars-loader'
+        loader: 'handlebars-loader',
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -75,11 +73,9 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               autoprefixer: {
-                browser: ["last 2 versions"]
+                browser: ['last 2 versions'],
               },
-              plugins: () => [
-                autoprefixer
-              ],
+              plugins: () => [autoprefixer],
             },
           },
           'sass-loader',
@@ -100,7 +96,7 @@ module.exports = {
             options: {
               mozjpeg: {
                 progressive: true,
-                quality: 65
+                quality: 65,
               },
               // optipng.enabled: false will disable optipng
               optipng: {
@@ -108,14 +104,14 @@ module.exports = {
               },
               pngquant: {
                 quality: '65-90',
-                speed: 4
+                speed: 4,
               },
               gifsicle: {
                 interlaced: false,
               },
               // the webp option will enable WEBP
               webp: {
-                quality: 75
+                quality: 75,
               },
             },
           },
