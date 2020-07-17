@@ -31,7 +31,7 @@ El código generado se guardará en la carpeta **/dist**.
 La mayoría de la configuración está basada en [este video de YouTube](https://youtu.be/7e5apiL6tVQ), pero con algunas diferencias clave explicadas a continuación.
 
 #### Limpieza de **/dist**
-En lugar de eliminar dicha carpeta desde la línea de comandos cada vez que se construya el proyecto, se usa el módulo [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) para limpiar los archivos basura del **/div**.
+En lugar de eliminar dicha carpeta desde la línea de comandos cada vez que se construya el proyecto, se usa [CleanWebpackPlugin](https://webpack.js.org/guides/output-management/#cleaning-up-the-dist-folder) para limpiar los archivos basura del **/dist**.
 
 #### .env
 <!-- TO-DO -->
