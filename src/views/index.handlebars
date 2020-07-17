@@ -11,10 +11,20 @@
 
     <div class="content">
         <h1 class="title">Webpack, Sass & a Template Engine</h1>
+
         <p>
-            Este es el contenido
+            En el desarrollo de esta página se usó Webpack para construir los módulos estáticos. El JavaScript es mínimo,
+            solo se utiliza para indicarle a Webpack qué módulos requiere cada página.
         </p>
+        <p>
+            Otra característica es que se usa Sass y Handlebars en lugar de CSS y HTML puro para que sea más fácil el desarrollo,
+            pero cuando Webpack construye la aplicación esos archivos se procesan para que los navegadores lo entiendan.
+        </p>
+        <p>
+            Para más información, leer el README.md
+        </p>
+
+        {{> ../partials/dependencies }}
     </div>
-    
 </body>
 </html>
