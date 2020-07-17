@@ -1,1 +1,1 @@
-console.log('I\'m in the about page')
+import 'src/assets/sass/common.scss';
