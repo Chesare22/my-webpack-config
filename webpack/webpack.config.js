@@ -17,7 +17,6 @@ const route = extraConfig => {
       removeEmptyElements: true,
     },
   }, extraConfig);
-  console.log('Route Configuration: ', configuration);
   return new HtmlWebpackPlugin(configuration);
 };
 
