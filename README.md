@@ -53,10 +53,17 @@ module.exports = {
 ```
 
 #### `import` absoluto
-<!-- TO-DO -->
+En los proyectos grandes de JavaScript no se recomienda abusar de los `import` relativos porque pueden generarse líneas poco legibles. En [este artículo](https://nimblewebdeveloper.com/blog/absolute-alias-imports-in-javascript-vscode) se explica bien el pequeño tema y da un par de tips adicionales. En resumen, usamos [`resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias) para poder hacer referencia a la carpeta **/src** desde cualquier archivo JavaScript.
+
+De momento sólo se configuró para de JavaScript. No funciona en nuestras plantillas (handlebars) ni estilos (scss).
 
 #### Rutas
-<!-- TO-DO -->
+Si usaron la aplicación, se habrán dado cuenta de que se generan dos rutas (la página inicial y _/about_). Esto se debe a una configuración de [webpack.config.js](webpack/webpack.config.js). Cada instancia de [HtmlWebpackPlugin](https://github.com/jantimon/html-webpack-plugin) que se añada al arreglo `plugins` va a generar un archivo html, configurado con las siguientes propiedades:
++ `template` indica el archivo que se va a procesar para esa ruta.
++ `chunks` es un arreglo que contiene los archivos de JavaScript utilizados. Cada valor corresponde a una propiedad de `entry`.
++ `filename` es el nombre del archivo generado.
+
+Hay otras propiedades, pero esas son las más importantes. Nosotros usamos una función llamada `route` para no tener que escribir varias veces las propiedades más comunes.
 
 
 ## Lista de dependencias y plugins
