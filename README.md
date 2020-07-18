@@ -10,9 +10,9 @@ El propósito de este proyecto es crear un entorno para aprender JavaScript en f
 3. Copiar y pegar el contenido de **.env.example** en un nuevo archivo llamado **.env**. Se puede cambiar el valor de las variables pero no su nombre.
 
 ### Cargar el proyecto en un puerto de localhost
-Esta opción es útil para desarrollar, pues la aplicación se carga en un puerto (el definido dentro del **.env**) y escucha los cambios hechos en el código fuente usando [HMR](https://webpack.js.org/concepts/hot-module-replacement/). Esto quiere decir que ~~casi todos~~ los cambios en el código se verán reflejados en localhost sin necesidad de recargar la página.
+Esta opción es útil para desarrollar, pues la aplicación se carga en un puerto local (el definido dentro de **.env**) y escucha los cambios hechos en el código fuente usando [HMR](https://webpack.js.org/concepts/hot-module-replacement/). Esto quiere decir que ~~casi todos~~ los cambios en el código se verán reflejados en localhost sin necesidad de recargar la página.
 
-El siguiente comando carga la app y abre el navegador:
+El siguiente comando carga la app y la abre en el navegador:
 ```
 npm run dev
 ```
@@ -24,7 +24,7 @@ El siguiente comando sirve para construir una versión del proyecto que funcione
 ```
 npm run build
 ```
-El código generado se guardará en la carpeta **/dist**.
+El código generado se guardará en la carpeta **/dist** y estará algo optimizado.
 
 
 ## Cómo funciona la configuración
@@ -34,7 +34,23 @@ La mayoría de la configuración está basada en [este video de YouTube](https:/
 En lugar de eliminar dicha carpeta desde la línea de comandos cada vez que se construya el proyecto, se usa [CleanWebpackPlugin](https://webpack.js.org/guides/output-management/#cleaning-up-the-dist-folder) para limpiar los archivos basura del **/dist**.
 
 #### .env
-<!-- TO-DO -->
+Separar la configuración del código fuente es uno de los factores incluídos en [The Twelve-Factor App](https://12factor.net/config) para cumplir con algunos criterios de calidad. Este archivo sirve para guardar valores que dependan del entorno en que corra la app. El código podrá acceder a dichas variables mediante el objeto global `process.env` después de [requerir y configurar dotenv](https://www.npmjs.com/package/dotenv#usage). Por ejemplo:
+```dosini
+# Inside .env
+PORT=9000
+```
+```javascript
+// Inside webpack.config.js
+require('dotenv').config();
+
+module.exports = {
+  // ...
+  devServer: {
+    port: process.env.PORT, // From .env
+    open: true,
+  },
+};
+```
 
 #### `import` absoluto
 <!-- TO-DO -->
@@ -49,10 +65,12 @@ En lugar de eliminar dicha carpeta desde la línea de comandos cada vez que se c
 + [Handlebars](https://handlebarsjs.com/).
 + [Sass](https://sass-lang.com/).
 + [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/).
+### Para facilitar el desarrollo
 + [dotenv](https://www.npmjs.com/package/dotenv).
++ [DevServer](https://webpack.js.org/configuration/dev-server/).
++ [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin).
 ### Optimización
 + [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader).
-+ [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin).
 
 El resto de las dependencias son usadas _nomás pa' que compile_ y no vale la pena mencionarlas. Para detalles específicos, ver nuestro [package.json](./package.json).
 
